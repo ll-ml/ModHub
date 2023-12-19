@@ -1,0 +1,157 @@
+<template>
+    <div class="container py-2">
+        <div class="card text-wrap">
+            <div class="card-header">
+                <h3 class="card-title text-center zyyta-logo-font">Upload Game</h3>
+            </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Mod Title</label>
+                        <input v-model="title" type="text" class="form-control" placeholder="Title">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea v-model="description" class="form-control" placeholder="Enter a description of your mod. Markdown is enabled." rows="10"></textarea>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h3 class="text-center">File Upload</h3>
+
+                     <div class="mb-3">
+                        <label for="formFileLg" class="form-label">Image Upload</label>
+                        <input class="form-control form-control-lg" type="file" ref="imageFileInput" @change="previewImage" multiple>
+                    </div>
+
+                    <div class="container" v-if="imagePreviewURLs">
+                        <p class="zyyta-logo-font">Your image previews:</p>
+                        <div v-for="(preview, index) in imagePreviewURLs" :key="index">
+                            <img :src="preview" class="img-thumbnail" alt="preview">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formFileLg" class="form-label">Game File Upload</label>
+                        <input class="form-control form-control-lg" type="file" ref="gameFileInput" @change="checkGameFile">
+                    </div>
+                    
+                    <div class="d-grid py-4 gap-2 col-3 mx-auto">
+                        <button @click="uploadGame" class="fs-4 btn btn-outline-primary" type="button" :disabled="disabledUpload">
+                            <span v-if="isUploading" class="spinner-border text-dark" role="status" aria-hidden="true"></span>
+                            <span v-else>Upload Game</span> 
+                        </button>
+                    </div>
+                    
+                    <div v-if="isUploading" class="progress" role="progressbar" aria-label="Game Upload Stat" :aria-valuenow="`${uploadPercent}`" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" :style="`width: ${uploadPercent}%`"></div>
+                    </div>
+                    
+
+                    <notification-success v-if="uploadStatus === 'success'" :message="statusText"></notification-success>
+                    <notifications-alert v-if="uploadStatus === 'failed'" :message="statusText"></notifications-alert>
+
+                </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import NotificationSuccess from '@/components/Notifications/NotificationSuccess.vue';
+import NotificationsAlert from '@/components/Notifications/NotificationAlert.vue'
+
+export default {
+    components: {
+        NotificationSuccess,
+        NotificationsAlert
+    },
+    created() {
+        document.title = 'Admin Upload | Zyyta.com';
+        
+    },
+    data() {
+        return {
+            title: '',
+            description: '',
+            author: '',
+            
+            statusText: '',
+            isUploading: false,
+            notAuthor: '',
+            imagePreviewURLs: [],
+            uploadStatus: '',
+            uploadPercent: '0',
+            disabledUpload: false,
+        }
+    },
+    methods: {
+        async uploadGame() {
+            this.isUploading = true;
+            this.disabledUpload = true;
+            const gameFiles = this.$refs.gameFileInput.files[0];
+            //const imageFile = this.$refs.imageFileInput.files[0];
+
+            const chunkSize = 4 << 20; //4 MB Chunk size per upload request
+            const totalChunks = Math.ceil(gameFiles.size / chunkSize);
+            let currentChunk = 0; 
+
+            while(currentChunk < totalChunks) {
+                const gameData = new FormData();
+                const start = currentChunk * chunkSize; 
+                const end = Math.min(start + chunkSize, gameFiles.size);
+
+                const chunk = gameFiles.slice(start, end);
+
+                gameData.append('gameFileData', chunk, gameFiles.name);
+
+                try {
+                    const gameUploadResponse = await fetch('/webapp/upload-game', { 
+                    method: 'POST',
+                    body: gameData 
+                    });
+
+                    if(gameUploadResponse.ok) {
+                        let uploadPercentCurrent = (currentChunk / totalChunks) * 100;
+                        this.uploadPercent = uploadPercentCurrent.toString();
+                    } else {
+                        this.uploadStatus = 'failed';
+                        this.statusText = "There was an error uploading your file.";
+                        return;
+                    }
+                } catch(error) {
+                    this.uploadStatus = 'failed';
+                    this.statusText = "ERROR: " + error.message;
+                }
+                currentChunk++;
+            }
+            this.uploadStatus = 'success'
+            this.statusText = "Game successfully uploaded to server."
+            this.isUploading = false;
+            this.disabledUpload = false;
+        },
+        previewImage(event) {
+            const selectedFiles = Array.from(event.target.files);
+
+            for(const file of selectedFiles) {
+                if(file.type.startsWith('image/')) {
+                    const imagePreviewURL = URL.createObjectURL(file);
+                    this.imagePreviewURLs.push(imagePreviewURL);
+                }
+            }
+        },
+        checkGameFile(event) {
+            const modFile = event.target.files[0];
+            const fileType = modFile.type;
+            const fileName = modFile.name.toLowerCase();
+
+            if(fileType === 'application/zip' || 
+               fileName.endsWith('.7z')) {
+                this.disabledUpload = false;
+               } else {
+                this.disabledUpload = true;
+               }
+        },
+    }
+
+}
+</script>
