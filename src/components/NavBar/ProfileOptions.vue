@@ -48,6 +48,7 @@ export default {
   data() {
     return {
       privBadge: 'primary',
+      maxNameLength: 14,
       isAdmin: false,
       privLevel: '',
       username: ''
@@ -58,8 +59,8 @@ export default {
       this.uStore.signOut();
     },
     truncateUsername() {
-      if (this.username.length > 14) {
-        this.username = this.username.slice(0, 14-3) + '...';
+      if (this.username.length > this.maxNameLength) {
+        this.username = this.username.slice(0, this.maxNameLength-3) + '...';
       }
     },
   }
@@ -69,23 +70,5 @@ export default {
 <style scoped>
 .showCursorOnMouseOver {
   cursor: pointer;
-}
-
-.glow {
-  font-size: 60px;
-  color: #000000;
-  text-align: center;
-  -webkit-animation: glow 1s ease-in-out infinite alternate;
-  -moz-animation: glow 1s ease-in-out infinite alternate;
-  animation: glow 1s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0047AB, 0 0 40px #0047AB, 0 0 50px #0047AB, 0 0 60px #0047AB, 0 0 70px #0047AB;
-  }
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #00FFFF, 0 0 40px #00FFFF, 0 0 50px #00FFFF, 0 0 60px #00FFFF, 0 0 70px #00FFFF, 0 0 80px #00FFFF;
-  }
 }
 </style>

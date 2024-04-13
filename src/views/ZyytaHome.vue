@@ -11,7 +11,7 @@ export default {
   name: 'HomeView',
   components: {
     ModsDisplay,
-    FeaturedGamesDisplay
+    FeaturedGamesDisplay,
   },
   created() {
     this.setTitle()
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      modListHomeTitle: 'Mod Showcase',
+      modListHomeTitle: 'Mods',
 
     }
   },

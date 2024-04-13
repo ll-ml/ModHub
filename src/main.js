@@ -18,4 +18,3 @@ const store = useUserStore();
 app.use(store);
 
 app.mount('#app');
-//createApp(App).use(router, pinia).mount('#app')

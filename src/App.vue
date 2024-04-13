@@ -31,6 +31,11 @@ export default {
   src: local("Orbitron"),
   url("./assets/fonts/orbitron/Orbitron-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: "jersey_10_charted";
+  src: local("jersey_10_charted"),
+  url("./assets/fonts/jersey_10_charted/Jersey10Charted-Regular.ttf") format("truetype");
+}
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

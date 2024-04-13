@@ -1,5 +1,5 @@
 <template>
-<h1 class="outlineText text-center bg-secondary">{{ username }}</h1>
+<h1 class="outlineText text-center bg-secondary">{{ username }} <i v-if="verified" class="bi bi-patch-check"></i></h1>
 
   <div class="album py-5">
   <div class="container">
@@ -53,6 +53,7 @@ export default {
         return {
           mods: [],
           bio: '',
+          verified: false,
           userNotFound: false,
           notFoundMessage: "User not found.",
           errorMessage: "",
@@ -75,6 +76,9 @@ export default {
         if(userInfoResponse.ok) {
           const userInfoJSON = await userInfoResponse.json();
           this.bio = userInfoJSON.bio;
+          if (userInfoJSON.perms === "admin") {
+            this.verified = true;
+          }
         } else if (userInfoResponse.status === 404) {
           this.userNotFound = true;
         } 

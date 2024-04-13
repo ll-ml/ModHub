@@ -1,6 +1,6 @@
 <template>
 <div>
-<h1 class="text-light text-center bg-secondary zyyta-logo-font">{{ modListTitle }}</h1>
+<h3 class="text-light text-center bg-secondary zyyta-logo-font">{{ modListTitle }}</h3>
 <div class="album py-5">
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -38,10 +38,14 @@ export default {
     },
     methods: {
       async getMods() {
-        let res = await fetch('webapp/getmods');
-        let modList = await res.json();
+        const backendResp = await fetch('webapp/getmods');
+        if (backendResp.ok) {
+          let modList = await backendResp.json();
+          this.mods = modList.mods;
 
-        this.mods = modList.mods;
+        } else {
+          this.mods = null;
+        }
       },
     }
 }

@@ -5,31 +5,10 @@
                 <h3 class="card-title text-center zyyta-logo-font">Upload Game</h3>
             </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label class="form-label">Mod Title</label>
-                        <input v-model="title" type="text" class="form-control" placeholder="Title">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <textarea v-model="description" class="form-control" placeholder="Enter a description of your mod. Markdown is enabled." rows="10"></textarea>
-                    </div>
 
                     <hr class="my-4">
 
                     <h3 class="text-center">File Upload</h3>
-
-                     <div class="mb-3">
-                        <label for="formFileLg" class="form-label">Image Upload</label>
-                        <input class="form-control form-control-lg" type="file" ref="imageFileInput" @change="previewImage" multiple>
-                    </div>
-
-                    <div class="container" v-if="imagePreviewURLs">
-                        <p class="zyyta-logo-font">Your image previews:</p>
-                        <div v-for="(preview, index) in imagePreviewURLs" :key="index">
-                            <img :src="preview" class="img-thumbnail" alt="preview">
-                        </div>
-                    </div>
 
                     <div class="mb-3">
                         <label for="formFileLg" class="form-label">Game File Upload</label>
@@ -50,24 +29,39 @@
 
                     <notification-success v-if="uploadStatus === 'success'" :message="statusText"></notification-success>
                     <notifications-alert v-if="uploadStatus === 'failed'" :message="statusText"></notifications-alert>
-
                 </div>
         </div>
+
+        <div class="container py-3">
+            <h4 class="text-center zyyta-logo-font"> Current Games</h4>
+            <div v-for="(game, index) in games" :key=index>
+                <game-brief :game="game"></game-brief>
+                <div class="py-2"></div>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
 import NotificationSuccess from '@/components/Notifications/NotificationSuccess.vue';
 import NotificationsAlert from '@/components/Notifications/NotificationAlert.vue'
+import GameBrief from '@/components/GamesDisplay/GameBrief.vue';
+import { useUserStore } from '@/store/user';
 
 export default {
     components: {
         NotificationSuccess,
-        NotificationsAlert
+        NotificationsAlert,
+        GameBrief
+    },
+    setup() {
+        const uStore = useUserStore();
+        return { uStore };
     },
     created() {
-        document.title = 'Admin Upload | Zyyta.com';
-        
+        this.getGames();
+        document.title = 'Admin Upload | Zyyta.com';  
     },
     data() {
         return {
@@ -82,6 +76,7 @@ export default {
             uploadStatus: '',
             uploadPercent: '0',
             disabledUpload: false,
+            games: [],
         }
     },
     methods: {
@@ -129,16 +124,6 @@ export default {
             this.isUploading = false;
             this.disabledUpload = false;
         },
-        previewImage(event) {
-            const selectedFiles = Array.from(event.target.files);
-
-            for(const file of selectedFiles) {
-                if(file.type.startsWith('image/')) {
-                    const imagePreviewURL = URL.createObjectURL(file);
-                    this.imagePreviewURLs.push(imagePreviewURL);
-                }
-            }
-        },
         checkGameFile(event) {
             const modFile = event.target.files[0];
             const fileType = modFile.type;
@@ -151,6 +136,16 @@ export default {
                 this.disabledUpload = true;
                }
         },
+        async getGames() {
+            const gamesBackendRes = await fetch('/webapp/getgames')
+            if (gamesBackendRes.ok) {
+                const gameList = await gamesBackendRes.json();
+                this.games = gameList.games;
+            } else {
+                this.games = null;
+            }
+
+        }
     }
 
 }

@@ -81,7 +81,7 @@ export default {
 </script>
 <style>
 .zyyta-logo-font {
-  font-family: "Orbitron";
+  font-family: "jersey_10_charted";
 }
 
 .search {
