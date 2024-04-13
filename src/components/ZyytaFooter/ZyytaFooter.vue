@@ -7,7 +7,7 @@
             <i class="bi bi-github"></i>
         </a>
 
-        <ul class="nav col-md-4 justify-content-end">
+        <ul class="nav col-md-4 justify-content-end default-font">
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Email: contact@zyyta.com</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Forum</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>

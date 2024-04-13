@@ -4,7 +4,7 @@
         <div class="card">
         <img :src="`/webapp/images/static/${this.$route.params.gamename}`" class="force-fit-image">
         <div class="card-img-overlay">
-            <h1 class="card-title outlineText text-center">{{ gameInfo.name }}</h1>
+            <h1 class="card-title outlineText text-center default-font">{{ gameInfo.name }}</h1>
         </div>
         </div>
         </div>
@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-body">
           <router-view>
-            <div class="d-lg-flex justify-content-between text-truncate">
+            <div class="d-lg-flex justify-content-between text-truncate default-font">
                 <li class="list-group-item"><i class="bi bi-box-arrow-down"></i> Total Downloads: {{ gameInfo.downloads }}</li>
                 <li class="list-group-item"><i class="bi bi-calendar-check"></i> Release Date: {{ gameInfo.release }}</li>
                 <li class="list-group-item"><i class="bi bi-database"></i> Size: {{ gameInfo.size }}</li>
@@ -30,7 +30,7 @@
 <div class="card text-wrap info-card">
   <div class="card-body">
 
-    <div class="text-center">
+    <div class="text-center default-font">
       <span v-html="gameInfo.description"></span>
     </div>
   </div>

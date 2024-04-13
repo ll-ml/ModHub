@@ -21,10 +21,10 @@ export default {
     created() {
         let theme = localStorage.getItem('theme');
 
-        if(theme === 'dark') {
-            this.setThemeDark();
-        }else {
+        if(theme === 'light') {
             this.setThemeLight();
+        }else {
+            this.setThemeDark();
         }
 
     },

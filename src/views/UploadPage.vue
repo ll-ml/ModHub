@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h3 class="card-title text-center zyyta-logo-font">Upload Mod</h3>
             </div>
-                <div class="card-body">
+                <div class="card-body default-font">
                     <div class="mb-3">
                         <label class="form-label">Mod Title</label>
                         <input v-model="title" type="text" class="form-control" placeholder="Title">

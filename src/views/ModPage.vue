@@ -1,6 +1,6 @@
 <template>
 <div class="col-12">
-<div class="card">
+<div class="card default-font">
   <img v-if="modInfo.modTitle" :src="`/webapp/images/mods/${modInfo.image}`" class="force-fit-image" :alt="`${modInfo.modTitle}`">
   <div class="card-img-overlay">
     <h1 class="card-title outlineText text-center">{{ modInfo.modTitle }}</h1>
@@ -16,7 +16,7 @@
 
 <div class="container-sm">
     <div class="card">
-        <div class="card-body">
+        <div class="card-body default-font">
           <router-view>
             <div class="d-lg-flex justify-content-between text-truncate">
                 <download-panel :fileSize="modInfo.fileSize" :modTitle="modInfo.modTitle"></download-panel>
@@ -35,7 +35,7 @@
 <div class="card text-wrap info-card">
   <div class="card-body">
 
-    <div class="text-center">
+    <div class="text-center default-font">
       <span v-html="modInfo.description"></span>
     </div>
 

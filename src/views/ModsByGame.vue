@@ -1,17 +1,17 @@
 <template>
     <div>
         <div class="col-12">
-        <div class="card">
+        <div class="card default-font">
         <img :src="`/webapp/images/static/${this.$route.params.gamename}`" class="force-fit-image">
         <div class="card-img-overlay">
-            <h1 class="card-title outlineText text-center">{{ gameTitle }}</h1>
+            <h1 class="card-title outlineText default-font text-center">{{ gameTitle }}</h1>
         </div>
         </div>
         </div>
     </div>
     <!--- TITLE PAGE END -->
 <div>
-<h2 class="text-light text-center bg-secondary">Mods</h2>
+<h2 class="text-light text-center bg-secondary default-font">Mods</h2>
   <div class="album py-5">
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -20,15 +20,21 @@
       </div>
     </div>
   </div>
+   <div class="container-fluid py-4">
+        <mod-pagination></mod-pagination>
+    </div>
   </div>
-  </div>
+</div>
 </template>
 
 <script>
 import ModCard from '@/components/ModsDisplay/ModCard.vue';
+import ModPagination from '@/components/ModPagination/DefaultPagination.vue';
+
 export default {
     components: {
-      ModCard
+      ModCard,
+      ModPagination
     },
     created() {
         this.getModsForGame();
@@ -38,7 +44,7 @@ export default {
     },
     data() {
         return {
-            gameTitle: 'Loading..',
+            gameTitle: 'Loading mods for game...',
             mods: [],
         }
     },
@@ -46,9 +52,15 @@ export default {
         async getModsForGame() {
           let modsListRes = await fetch('/webapp/getmods/'+ this.$route.params.gamename);
           let mods = await modsListRes.json();
+          if(modsListRes.status === 200) {
+            this.mods = mods.mods;
+            this.gameTitle = this.mods[0].game;
 
-          this.mods = mods.mods;
-          this.gameTitle = this.mods[0].game;
+          } else {
+            this.mods = null;
+            this.gameTitle = "Error: Game Not Found"
+
+          }
         }
     }
 }

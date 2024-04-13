@@ -22,7 +22,7 @@
   </div>
   
   <!-- PROFILE OPTIONS -->
-  <div class="text-nowrap">
+  <div class="text-nowrap default-font">
     <div class="d-grid gap-2 d-md-flex px-4 justify-content-md-end">
     <button v-if="!uStore.getUser" type="button" class="btn text-nowrap btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Log In
@@ -82,6 +82,9 @@ export default {
 <style>
 .zyyta-logo-font {
   font-family: "jersey_10_charted";
+}
+.default-font {
+  font-family: "SpaceGrotesk-Regular";
 }
 
 .search {

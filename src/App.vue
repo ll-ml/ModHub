@@ -36,6 +36,11 @@ export default {
   src: local("jersey_10_charted"),
   url("./assets/fonts/jersey_10_charted/Jersey10Charted-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: "SpaceGrotesk-Regular";
+  src: local("SpaceGrotesk-Regular"),
+  url("./assets/fonts/Space_Grotesk/SpaceGrotesk-Regular.ttf") format("truetype");
+}
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

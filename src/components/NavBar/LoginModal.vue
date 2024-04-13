@@ -4,7 +4,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5 text-center zyyta-logo-font" id="exampleModalLabel">Auth</h1>
+        <h1 class="modal-title fs-5 text-center default-font" id="exampleModalLabel">Auth</h1>
         <button type="button" id="closeModalButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -57,7 +57,7 @@ export default {
         return {
             username: ref(''),
             password: ref(''),
-            invalidText: "Sorry, could not log you in with provided credentials.",
+            invalidText: "Invalid username or password.",
             invalid: false,
         }
     },
@@ -75,6 +75,7 @@ export default {
             }
         },
         modalCloseOnLogin() {
+          //allows model to be closed on login without issues.
             const closeButton = document.getElementById('closeModalButton');
             closeButton.click();
         }

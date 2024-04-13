@@ -3,7 +3,7 @@
 <div class="dropdown-center px-4">
   <a class="px-3 text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
    <i class="h2 bi bi-person-circle"></i>
-    <a class="px-2 zyyta-logo-font outlineText">{{ username }}</a>
+    <a class="px-2 default-font outlineText">{{ username }}</a>
   </a>
   <ul class="dropdown-menu">
   <li><h6 class="dropdown-header text-center">Actions <span :class="`badge text-bg-${privBadge}`"> {{ privLevel }}</span></h6></li>

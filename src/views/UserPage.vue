@@ -1,5 +1,6 @@
 <template>
-<h1 class="outlineText text-center bg-secondary">{{ username }} <i v-if="verified" class="bi bi-patch-check"></i></h1>
+<h1 class="outlineText text-center bg-secondary default-font">{{ username }} <i v-if="verified" class="bi bi-patch-check-fill fs-5"></i></h1>
+
 
   <div class="album py-5">
   <div class="container">
@@ -9,7 +10,7 @@
       <div class="card text-wrap info-card" style="border-radius: 0;">
         <div class="card-body">
 
-        <div class="text-center">
+        <div class="text-center default-font">
           <span v-html="bio"></span>
         </div>
 
@@ -18,7 +19,7 @@
     </div>
 
   <div v-if="!userNotFound">
-    <h2 class="text-center">Recent Uploads</h2>
+    <h2 class="text-center defaut-font">Recent Uploads</h2>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <div v-for="(mod, index) in mods" class="col" :key=index>
         <mod-card :mod="mod"></mod-card>

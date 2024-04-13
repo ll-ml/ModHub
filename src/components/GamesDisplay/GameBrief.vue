@@ -25,7 +25,7 @@ export default {
     },
     props: ['game'],
     created() {
-        //this.gameName = this.game.name;
+        
     },
     mounted() { 
         this.gameName = this.game.name;

@@ -1,10 +1,10 @@
 <template>
     <div class="container py-2">
         <div class="card text-wrap">
-            <div class="card-header">
+            <div class="card-header default-font">
                 <h3 class="card-title text-center zyyta-logo-font">Settings: {{ signedInUser }}</h3>
             </div>
-                <div class="card-body">
+                <div class="card-body default-font">
                     <div class="form-floating">
                         <textarea v-model="bio" class="form-control" placeholder="Enter your bio. Markdown is enabled." :value="`${bio}`" style="height: 100px" rows="10"></textarea>
                         <label for="floatingTextarea2">Your Bio</label>

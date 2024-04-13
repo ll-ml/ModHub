@@ -1,6 +1,6 @@
 <template>
 <div>
-<h1 class="text-light text-center bg-secondary">Search: {{ this.$route.query.q }}</h1>
+<h1 class="text-light text-center default-font bg-secondary">Search: {{ this.$route.query.q }}</h1>
 <div class="album py-5">
 <div class="container">
   <notification-alert v-if="notFound" :message="notFoundMessage"></notification-alert>

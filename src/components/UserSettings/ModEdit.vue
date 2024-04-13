@@ -70,9 +70,6 @@ export default {
         this.desc = descJSON;
       }
     },
-    testInfo() {
-      console.log(this.mod.modTitle);
-    }
   }
 }
 </script>
