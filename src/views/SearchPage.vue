@@ -27,13 +27,13 @@ export default {
     },
     created() {
         this.search = this.$route.query.q;
-        document.title = this.$route.query.q + ' | Search Zyyta.com';
+        document.title = this.$route.query.q + ' | ModHub search';
         this.searchMods();
     },
     updated() {
         this.search = this.$route.query.q;
-        document.title = this.$route.query.q + ' |  Search Zyyta.com';
-        //this.searchMods(); this works but gets called recursively
+        document.title = this.$route.query.q + ' |  ModHub search';
+        //this.searchMods(); this works but gets called recursively need to fix this
     },
     data() {
         return {

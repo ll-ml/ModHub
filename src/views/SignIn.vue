@@ -24,7 +24,7 @@
     </form>
     <notifications-alert v-if="invalid" :message="invalidText"></notifications-alert>
     <footer>
-      <p class="mt-5 mb-3 text-muted zyyta-logo-font"><i class="bi bi-c-circle"></i> Zyyta.com 2023</p>
+      <p class="mt-5 mb-3 text-muted zyyta-logo-font"><i class="bi bi-c-circle"></i> Zyyta.com 2024</p>
     </footer>
   </main>
   </body>

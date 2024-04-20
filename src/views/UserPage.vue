@@ -48,7 +48,7 @@ export default {
         }
     },
     updated() {
-      document.title = this.username + " | Zyyta.com";
+      document.title = this.username;
     },
     data() {
         return {

@@ -2,9 +2,10 @@
 <div class="container text-center my-4 py-4">
   <body class="text-center">
     <main class="form-signin w-100 m-auto">
+    <div class="container-fluid">
     <form>
         <img class="mb-4" src="../assets/static_images/zyyta_default_home.png" alt="zyyta" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal zyyta-logo-font">Create a Zyyta.com Account</h1>
+        <h1 class="h3 mb-3 fw-normal zyyta-logo-font">Create a ModHub Account</h1>
 
         <div class="form-floating">
         <input v-model="email" type="email" class="form-control" placeholder="email@domain.com">
@@ -20,6 +21,7 @@
         </div>
         <button @click.prevent="register" class="my-3 btn btn-lg btn-outline-primary">Create Account</button>
     </form>
+    </div>
     <notification-alert v-if="errorMessage" :message="errorMessage"></notification-alert>
 </main>
   </body>

@@ -40,7 +40,7 @@ export default {
         this.getModsForGame();
     },
     updated() {
-      document.title = this.gameTitle + ' Mods | Zyyta.com';
+      document.title = this.gameTitle + ' Mods';
     },
     data() {
         return {

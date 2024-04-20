@@ -95,7 +95,7 @@ export default {
         NotificationsAlert
     },
     created() {
-        document.title = 'Mod Upload | Zyyta.com';
+        document.title = 'Upload your mod to ModHub';
         
     },
     data() {

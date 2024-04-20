@@ -57,7 +57,7 @@ export default {
       this.getModInfo();
     },
     updated() {
-      document.title = this.modInfo.modTitle + " | Zyyta.com";
+      document.title = this.modInfo.modTitle;
     },
     data() {
         return {

@@ -48,7 +48,7 @@ export default {
         this.getGameInfo();
     },
     updated() {
-      document.title = this.gameInfo.name + ' | Zyyta.com';
+      document.title = this.gameInfo.name + ' | Full Game Download';
     },
     data() {
         return {

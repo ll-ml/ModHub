@@ -15,7 +15,7 @@ export default {
     ZyytaFooter
   },
   mounted() {
-    document.title = "Zyyta.com | Games and Mods"
+    document.title = "ModHub"
   },
   data() {
     return {

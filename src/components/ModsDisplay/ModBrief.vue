@@ -35,7 +35,7 @@ export default {
             const deleteBackendResp = await fetch('/webapp/delmod/' + this.mod.image, {
              method: 'DELETE',}).then(deleteBackendResp => {
                 if (deleteBackendResp.ok) {
-                    console.log("Deleted");
+                    //console.log("Deleted");
                 }
              });
         }

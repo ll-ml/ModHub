@@ -61,7 +61,7 @@ export default {
     },
     created() {
         this.getGames();
-        document.title = 'Admin Upload | Zyyta.com';  
+        document.title = 'Admin Panel | ModHub.gg';  
     },
     data() {
         return {

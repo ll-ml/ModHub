@@ -8,7 +8,7 @@
     custom v-slot="{ navigate }">
     <a class="fs-2 navbar-brand zyyta-logo-font showCursor outlineText" @click="navigate">
       <img src="../../assets/static_images/zyyta_home.png" alt="ZyytaIcon" @click="navigate" width="60" height="54">
-        Zyyta.com
+        ModHub
     </a>
     </router-link>
   </div>

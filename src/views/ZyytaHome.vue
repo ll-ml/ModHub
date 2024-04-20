@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     setTitle() {
-      document.title = "Zyyta.com | Games and Mods"
+      document.title = "ModHub"
     }
 
   },
